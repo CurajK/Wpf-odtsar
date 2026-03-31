@@ -15,9 +15,7 @@ using System.Windows.Threading;
 
 namespace Wpf_odtsar
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
 
     public partial class MainWindow : Window
     {
@@ -89,7 +87,7 @@ namespace Wpf_odtsar
         {
             string whatYouveGot = string.Empty;
 
-            if (playerReaction > 1.0) 
+            if (playerReaction > 1.0)
             {
                 whatYouveGot = "You did horrible";
             }
@@ -115,7 +113,7 @@ namespace Wpf_odtsar
             }
             else
             {
-                whatYouveGot = "what the actual";
+                whatYouveGot = "uliaty start";
             }
 
             MessageBox.Show(whatYouveGot);
@@ -124,6 +122,7 @@ namespace Wpf_odtsar
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             playerReaction = 0;
+            
 
             ReactionCounter.Reset();
             Time_Shower.Content = ReactionCounter.Elapsed.Seconds + ":" + ReactionCounter.Elapsed.Milliseconds + "s";
@@ -142,14 +141,34 @@ namespace Wpf_odtsar
                 Time_Shower.Content = ReactionCounter.Elapsed.Seconds + ":" + ReactionCounter.Elapsed.Milliseconds + "s";
                 aftermatch();
 
+                return;
             }
-            else
-            {
 
+
+
+            _lightTimer.Stop();
+            _reactTimer.Stop();
+            ReactionCounter.Reset();
+
+            TimersTicking = false;
+            ticker = 1;
+
+            foreach (var item in balls)
+            {
+                item.Fill = Brushes.Gray;
             }
+
+            MessageBox.Show(" Uliaty štart! Klikol si priskoro!");
         }
     }
 }
+
+            
+
+            
+        
+    
+
 
 
                 
